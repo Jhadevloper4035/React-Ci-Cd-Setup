@@ -25,4 +25,6 @@ jobs :
 
             - name : "Install the dependency"
               run : npm install 
-              
+
+            - name : " list directory "
+              run : ls
