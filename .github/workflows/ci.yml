@@ -30,4 +30,4 @@ jobs :
               run : ls
 
             - name : "Checking is ther any linting issue "
-              run : num run lint 
+              run : npm run lint 
