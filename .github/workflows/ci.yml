@@ -28,3 +28,6 @@ jobs :
 
             - name : " list directory "
               run : ls
+
+            - name : "Checking is ther any linting issue "
+              run : num run lint 
