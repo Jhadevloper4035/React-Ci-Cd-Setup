@@ -26,11 +26,17 @@ jobs :
             - name : "Install the dependency"
               run : npm install 
 
-            - name : " list directory "
+            - name : "list directory "
               run : ls
 
-            - name : "Checking is ther any linting issue " 
+            - name : "Run Lint  " 
               run : npm run lint 
             
             - name : "Run Build"
               run : npm run build
+
+            - name : "Upload product-ready build files"
+              uses : actions/upload-artifact@v4
+              with : 
+                name : build 
+                path : /dist
