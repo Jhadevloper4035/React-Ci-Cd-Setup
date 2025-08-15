@@ -1,7 +1,32 @@
 pipeline {
     agent any
+    Options{
+        // Disable the build if there are no changes in the repository
+        skipDefaultCheckout true
+    }
 
     stages {
+
+        stage('clean work space'){
+
+            steps {
+                // Clean the workspace before starting the build
+                cleanWs()
+            }
+        }
+
+        stage('Checkout'){
+            steps{
+                // Checkout the code from the repository
+                checkout scm
+
+                // Print the current working directory
+                sh 'pwd'
+
+                // List the files in the current directory
+                sh 'ls -la'
+            }
+        }
         stage('Build') {
             agent {
                 docker {
@@ -10,8 +35,6 @@ pipeline {
                 }
             }
             steps {
-                // Clean workspace
-                cleanWs()
 
                 // Build the project
                 sh '''
