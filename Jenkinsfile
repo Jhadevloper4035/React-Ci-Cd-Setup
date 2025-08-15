@@ -7,7 +7,6 @@ pipeline {
     }
 
     environment {
-        
         VERCEL_TOKEN = credentials('NEW_TOKEN')
     }
 
@@ -20,20 +19,16 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scm
-                sh '''
-                    pwd
-                    ls -la
-                '''
+                sh 'pwd && ls -la'
             }
         }
 
-        stage('Build & Test') {
+        stage('Install & Build') {
             steps {
                 sh '''
                     node --version
                     npm --version
                     npm ci
-                    npx vite build
                     npm run build
                 '''
             }
@@ -41,31 +36,17 @@ pipeline {
 
         stage('Lint') {
             steps {
+                sh 'npm run lint'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
                 sh '''
-                    npm run lint
+                    npx vercel --prod --token $VERCEL_TOKEN --confirm --name=CiCd
+                    echo "Deployment completed successfully"
                 '''
             }
         }
-
-
-        stage('Deploy'){
-            steps{
-
-                sh '''
-                    npm install -g vercel
-
-                    vercel --prod --token $VERCEL_TOKEN --confirm --name=CiCd 
-                    echo "Deployment completed successfully"
-
-                    '''
-            }
-
-
-
-
-
-        }
-
-
     }
 }
