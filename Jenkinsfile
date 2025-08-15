@@ -33,6 +33,7 @@ pipeline {
                     node --version
                     npm --version
                     npm ci
+                    npx vite build
                     npm run build
                 '''
             }
