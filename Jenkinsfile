@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:20-alpine'
+            args '-u root:root'
+        }
+    }
 
     options {
         skipDefaultCheckout true
@@ -25,18 +30,13 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            agent {
-                docker {
-                    image 'node:20-alpine'
-                    args '-u root:root'
-                }
-            }
+        stage('Build & Test') {
             steps {
                 sh '''
                     node --version
                     npm --version
                     npm ci
+                    npm test
                     npm run build
                 '''
             }
