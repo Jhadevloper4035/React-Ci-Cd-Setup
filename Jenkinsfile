@@ -31,7 +31,8 @@ pipeline {
                     echo "=== Building with Node.js ==="
                     node --version
                     npm --version
-                    npm ci --only=production
+                    npm install
+                    npm test
                     npm run build
                 '''
             }
