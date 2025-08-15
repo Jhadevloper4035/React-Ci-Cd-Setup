@@ -1,24 +1,22 @@
 pipeline {
-    
     agent any
 
-    options{
+    options {
         // Disable the build if there are no changes in the repository
         skipDefaultCheckout true
     }
 
     stages {
 
-        stage('clean work space'){
-
+        stage('Clean Workspace') {
             steps {
                 // Clean the workspace before starting the build
                 cleanWs()
             }
         }
 
-        stage('Checkout'){
-            steps{
+        stage('Checkout') {
+            steps {
                 // Checkout the code from the repository
                 checkout scm
 
@@ -29,6 +27,7 @@ pipeline {
                 sh 'ls -la'
             }
         }
+
         stage('Build') {
             agent {
                 docker {
@@ -37,7 +36,6 @@ pipeline {
                 }
             }
             steps {
-
                 // Build the project
                 sh '''
                     ls -la
