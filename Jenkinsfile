@@ -36,9 +36,9 @@ pipeline {
         stage('Test') {
             steps {
                 sh '''
-                    npm test
+                    npm run test
 
-                    npm test -f dist/index.html 
+                    test -f dist/index.html 
                 '''
             }
         }
