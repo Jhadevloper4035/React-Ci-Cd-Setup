@@ -1,10 +1,13 @@
 pipeline {
-    agent any
+    agent any 
 
     stages{
-        stage("hello world"){
-            steps{
-                echo "Hello, World!"
+        stage('Build'){
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true // Reuse the node to avoid creating a new one for each stage
+                }
             }
         }
     }
