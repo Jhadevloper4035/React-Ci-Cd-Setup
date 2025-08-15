@@ -7,6 +7,7 @@ pipeline {
                 docker {
                     image 'node:20-alpine'
                     args '-u root:root' // Optional: run as root if permissions issues
+                    resueNode true // Reuse the same container for subsequent stages
                 }
             }
             steps {
