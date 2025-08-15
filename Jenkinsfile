@@ -1,5 +1,5 @@
 pipeline {
-    agent ant 
+    agent any
 
     stages{
         stage("hello world"){
