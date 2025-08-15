@@ -1,6 +1,8 @@
 pipeline {
+    
     agent any
-    Options{
+
+    options{
         // Disable the build if there are no changes in the repository
         skipDefaultCheckout true
     }
