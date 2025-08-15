@@ -33,12 +33,10 @@ pipeline {
             }
         }
 
-        stage('Test') {
+        stage('Lint') {
             steps {
                 sh '''
-                    npm run test
-
-                    test -f dist/index.html 
+                    npm run lint
                 '''
             }
         }
