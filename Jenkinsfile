@@ -6,6 +6,11 @@ pipeline {
         }
     }
 
+    environment {
+        NODE_ENV = 'production'
+        VERCEL_TOKEN = credentials('NEW_TOKEN')
+    }
+
     options {
         skipDefaultCheckout true
         timestamps()
@@ -48,10 +53,13 @@ pipeline {
                 sh '''
                     npm install -g vercel
 
+                    vercel --prod --token $VERCEL_TOKEN --confirm --name=CiCd 
+                    echo "Deployment completed successfully"
+
                     '''
             }
 
-            
+
 
 
 
