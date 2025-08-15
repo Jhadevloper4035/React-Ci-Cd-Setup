@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-        NODE_ENV = 'production'
+        
         VERCEL_TOKEN = credentials('NEW_TOKEN')
     }
 
