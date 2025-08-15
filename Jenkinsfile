@@ -43,7 +43,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                    npx vercel --prod --token $VERCEL_TOKEN --confirm --name=CiCd
+                    npx vercel --prod --token $VERCEL_TOKEN --yes --name=cicd
                     echo "Deployment completed successfully"
                 '''
             }
