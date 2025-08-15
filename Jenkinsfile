@@ -32,5 +32,17 @@ pipeline {
                 '''
             }
         }
+
+        stage('Test') {
+            steps {
+                sh '''
+                    npm test
+
+                    npm test -f dist/index.html 
+                '''
+            }
+        }
+
+
     }
 }
